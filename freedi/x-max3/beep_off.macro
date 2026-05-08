@@ -1,0 +1,3 @@
+[gcode_macro beep_off]
+gcode:
+    SET_PIN PIN=buzzer VALUE=0

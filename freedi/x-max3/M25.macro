@@ -1,0 +1,4 @@
+[gcode_macro M25]
+rename_existing: M9925
+gcode:
+    PAUSE

@@ -1,0 +1,12 @@
+[gcode_macro M191]
+gcode:
+    #Parameters
+    {% set chamber_target_temp = params.S|float %}
+
+    {% if chamber_target_temp == 0 %}
+        M118 Chamber heater off
+    {% else %}
+        M141 S{chamber_target_temp}
+        TEMPERATURE_WAIT SENSOR="heater_generic chamber" MINIMUM={([chamber_target_temp, 60]|min)-2} MAXIMUM={chamber_target_temp + 5}  
+        M118 Chamber at target temperature
+    {% endif %}
