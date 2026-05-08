@@ -1,0 +1,24 @@
+[gcode_macro PAUSE]
+rename_existing: BASE_PAUSE
+gcode:
+    {% set z_hop = params.Z|default(30)|int %}                                                                     ; Z hop amount
+    
+    {% if printer['pause_resume'].is_paused|int == 0 %}     
+        SET_GCODE_VARIABLE MACRO=RESUME VARIABLE=zhop VALUE={z_hop}                                                ; Set Z hop variable for reference in resume macro
+        SET_GCODE_VARIABLE MACRO=RESUME VARIABLE=etemp VALUE={printer['extruder'].target}                          ; Set hotend temperature variable for reference in resume macro
+        SAVE_GCODE_STATE NAME=PAUSE                                                                                ; Save current position for resume
+        BASE_PAUSE                                                                                                 ; Pause print
+        {% if (printer.gcode_move.position.z + z_hop) < printer.toolhead.axis_maximum.z %}                         ; Check that Z hop doesn't exceed Z max
+            G91                                                                                                    ; Use Relative positioning
+            G1 Z{z_hop} F600                                                                                       ; Raise Z up by Z hop amount
+        {% else %}
+            SET_GCODE_VARIABLE MACRO=RESUME VARIABLE=zhop VALUE=0                                                  ; Set Z hop to 0 if exceeds max
+        {% endif %}
+        SAVE_GCODE_STATE NAME=PAUSEPARK2
+        G90                                                                                                        ; Absolute positioning
+        GO_TO_POOP_BUCKET                                                                                          ; Move toolhead to poop bucket
+        SAVE_GCODE_STATE NAME=PAUSEPARK                                                                            ; Save parked position in case toolhead is moved during the pause (otherwise the return zhop can error)
+        M104 S0                                                                                                    ; Turn off hotend
+        SET_IDLE_TIMEOUT TIMEOUT=43200                                                                             ; Set timeout to 12 hours
+        SET_STEPPER_ENABLE STEPPER=extruder enable=0                                                               ; Disable extruder stepper
+    {% endif %}

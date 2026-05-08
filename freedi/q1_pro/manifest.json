@@ -1,0 +1,330 @@
+{
+  "manifest_version": "1",
+  "vendor": "freedi",
+  "model": "q1_pro",
+  "updated": "2026-05-08T18:52:12.683584Z",
+  "macros": [
+    {
+      "macro_name": "AUTO_LEVEL_BED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/AUTO_LEVEL_BED.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "BED_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/BED_PID_TUNE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "BEEP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/BEEP.macro",
+      "category": "Sound Macros"
+    },
+    {
+      "macro_name": "CALIBRATE_Z_OFFSET",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/CALIBRATE_Z_OFFSET.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "CANCEL_PRINT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/CANCEL_PRINT.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/CHAMBER_TEMP_CONTROLLER.macro",
+      "category": "Advanced CHAMBER_TEMP_CONTROLLER"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER_LOOP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/CHAMBER_TEMP_CONTROLLER_LOOP.macro",
+      "category": "Advanced CHAMBER_TEMP_CONTROLLER"
+    },
+    {
+      "macro_name": "CTC_STATUS",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/CTC_STATUS.macro",
+      "category": "Utility Macros"
+    },
+    {
+      "macro_name": "DISABLE_ALL_SENSOR",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/DISABLE_ALL_SENSOR.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "ENABLE_ALL_SENSOR",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/ENABLE_ALL_SENSOR.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "G28",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/G28.macro",
+      "category": "Homing"
+    },
+    {
+      "macro_name": "G29",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/G29.macro",
+      "category": "Z-height Macros"
+    },
+    {
+      "macro_name": "GO_TO_POOP_BUCKET",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/GO_TO_POOP_BUCKET.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "HOME_IF_NEEDED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/HOME_IF_NEEDED.macro",
+      "category": "Homing"
+    },
+    {
+      "macro_name": "INPUT_SHAPING_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/INPUT_SHAPING_CALIBRATE.macro",
+      "category": "Macros for display functionallity"
+    },
+    {
+      "macro_name": "LEAVE_POOP_BUCKET",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/LEAVE_POOP_BUCKET.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "LEVEL_BED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/LEVEL_BED.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "LOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/LOAD_FILAMENT.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "M0",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M0.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "M106",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M106.macro",
+      "category": "Fan Macros"
+    },
+    {
+      "macro_name": "M107",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M107.macro",
+      "category": "Fan Macros"
+    },
+    {
+      "macro_name": "M109",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M109.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M141",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M141.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M191",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M191.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M204",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M204.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "M25",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M25.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "M290",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M290.macro",
+      "category": "Z-height Macros"
+    },
+    {
+      "macro_name": "M303",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M303.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M8029",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M8029.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "M900",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/M900.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "NEXT_PRINT_STATIC_MESH",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/NEXT_PRINT_STATIC_MESH.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "NOZZLE_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/NOZZLE_PID_TUNE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "PAUSE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/PAUSE.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "PRIME_NOZZLE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/PRIME_NOZZLE.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "PRINT_END",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/PRINT_END.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "PRINT_START",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/PRINT_START.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "RESUME",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/RESUME.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "SET_PRINT_STATS_INFO",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/SET_PRINT_STATS_INFO.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "SHAPER_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/SHAPER_CALIBRATE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "UNLOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/UNLOAD_FILAMENT.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "_BUCKET_CUT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/_BUCKET_CUT.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "_FELT_WIPE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/_FELT_WIPE.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "_SET_ACCEL",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/_SET_ACCEL.macro",
+      "category": "Q1 Pro Macros"
+    },
+    {
+      "macro_name": "_Z_CLEARANCE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/_Z_CLEARANCE.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "beep_off",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/beep_off.macro",
+      "category": "Sound Macros"
+    },
+    {
+      "macro_name": "beep_on",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/q1_pro/beep_on.macro",
+      "category": "Sound Macros"
+    }
+  ]
+}

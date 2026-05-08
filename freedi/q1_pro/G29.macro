@@ -1,0 +1,12 @@
+[gcode_macro G29]
+gcode:
+    {% set chamber_target_temp = printer["heater_generic chamber"].target %}
+      M141 S0
+    {% if chamber_target_temp > 0 %}
+      G4 P15000
+    {% endif %}
+
+    BED_MESH_CLEAR                                                                                           ; Clear levelling data
+    BED_MESH_CALIBRATE ADAPTIVE=1 ADAPTIVE_MARGIN=5                                                          ; Start adaptive meshing
+
+    M141 S{chamber_target_temp}

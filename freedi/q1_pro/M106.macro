@@ -1,0 +1,48 @@
+[gcode_macro M106]
+rename_existing: M106.1
+gcode:
+    {% if params.P is defined %}
+      {% if params.S is defined %}
+        {% set speed = 0.003921*params.S|int %}
+        {% if (params.P|int) == 0 %}
+          M106.1 S{params.S|int}
+        {% elif (params.P|int) == 2 %}
+          SET_FAN_SPEED FAN=sidefan SPEED={speed}
+        {% elif (params.P|int) == 3 %}
+          SET_FAN_SPEED FAN=filterfan SPEED={speed}
+        {% else %}
+          SET_FAN_SPEED FAN=fan{params.P|int} SPEED={speed}
+        {% endif %}
+      {% else %}
+        {% if (params.P|int) == 0 %}
+          M106.1 S255
+        {% elif (params.P|int) == 2 %}
+          SET_FAN_SPEED FAN=sidefan SPEED=1
+        {% elif (params.P|int) == 3 %}
+          SET_FAN_SPEED FAN=filterfan SPEED=1
+        {% else %}
+          SET_FAN_SPEED FAN=fan{params.P|int} SPEED=1
+        {% endif %}
+      {% endif %}
+    {% endif %} 
+
+    {% if params.T is defined %}
+      {% if (params.T|int) == -2 %}
+        {% if params.S is defined %}
+          {% set speed = 0.003921*params.S|int %}
+          SET_FAN_SPEED FAN=filterfan SPEED={speed}
+        {% else %}
+          SET_FAN_SPEED FAN=filterfan SPEED=1
+        {% endif %}
+      {% endif %}
+    {% endif %}
+
+    {% if params.P is undefined %}
+      {% if params.T is undefined %}
+        {% if params.S is defined %}
+          M106.1 S{params.S|int}
+        {% else %}
+          M106.1 S255
+        {% endif %}
+      {% endif %}
+    {% endif %}

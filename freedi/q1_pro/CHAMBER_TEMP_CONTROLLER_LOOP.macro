@@ -1,0 +1,8 @@
+[delayed_gcode CHAMBER_TEMP_CONTROLLER_LOOP]
+initial_duration: 30.0
+gcode:
+    UPDATE_DELAYED_GCODE ID=CHAMBER_TEMP_CONTROLLER_LOOP DURATION=30
+    {% set ctc = printer["gcode_macro CHAMBER_TEMP_CONTROLLER"] %}
+    {% if printer.print_stats.state in ["printing","paused"] or ctc.state != 0 %}   # Add "standby" for testing
+        CHAMBER_TEMP_CONTROLLER
+    {% endif %}

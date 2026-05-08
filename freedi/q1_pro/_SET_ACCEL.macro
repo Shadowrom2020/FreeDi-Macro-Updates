@@ -1,0 +1,5 @@
+[gcode_macro _SET_ACCEL]
+gcode:
+    {% set printer_config = printer.configfile.settings['printer'] %}
+    {% set set_acceleration = params.ACCEL|default(printer_config.max_accel)|float %}
+    SET_VELOCITY_LIMIT ACCEL={set_acceleration}

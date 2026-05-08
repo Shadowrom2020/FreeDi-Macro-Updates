@@ -1,0 +1,16 @@
+[gcode_macro GO_TO_POOP_BUCKET]
+description: Move toolhead to poop bucket
+gcode:
+    {% set curr_x = printer.toolhead.position.x %}
+    {% set curr_y = printer.toolhead.position.y %}
+    {% if (curr_y != 240) or (curr_x != 97) %}
+        _Z_CLEARANCE DISTANCE=0 MIN_Z=40                                                                               ; Make sure to have enough clearance
+        G90                                                                                                            ; Absolute positioning
+        {% if printer.gcode_move.position.y > 240 %}
+            G1 Y240 F9000
+        {% endif %}
+        G1 X97 Y240 F9000
+        _SET_ACCEL ACCEL=100                                                                                           ; Reduce acceleration to 100mm/s^2
+        G1 Y254 F1500                                                                                                  ; gently press against wiper arm
+        _SET_ACCEL                                                                                                     ; Reset acceleration
+    {% endif %}
