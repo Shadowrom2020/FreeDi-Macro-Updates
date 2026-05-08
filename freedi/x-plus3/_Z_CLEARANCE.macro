@@ -1,0 +1,30 @@
+[gcode_macro _Z_CLEARANCE]
+description: Lower the bed to give some clearance
+# Parameters:
+#   DISTANCE=<float>  (optional) Relative distance in mm to move the bed DOWN from the current Z position.
+#   MIN_Z=<float>     (optional) Absolute minimum Z height that must be reached, regardless of DISTANCE.
+# Real-world usage in this config:
+#   _Z_CLEARANCE DISTANCE=50           -> Used in PRINT_END to lower the bed 50 mm from wherever it stopped
+#   _Z_CLEARANCE DISTANCE=0 MIN_Z=40   -> Ensures at least 40 mm clearance for safe XY travel, eg. before moving to the poop bucket
+variable_default_distance: 40.0
+gcode:
+    {% set current_z_height = printer.toolhead.position.z %}
+    {% set max_z_height = printer.toolhead.axis_maximum.z %}
+    {% set distance = params.DISTANCE|default(variable_default_distance)|float %}
+    {% set target_z_height = current_z_height + distance %}
+
+    {% set min_z_param = params.MIN_Z|default(None) %}
+    {% if min_z_param is not none %}
+        {% set min_z = min_z_param|float %}
+        {% if target_z_height < min_z %}
+            {% set target_z_height = min_z %}
+        {% endif %}
+    {% endif %}
+
+    G90                                                                                                            ; Absolute positioning
+    G1 Z{ [target_z_height, max_z_height]|min }
+
+
+########################################
+#  Filament Macros
+########################################
