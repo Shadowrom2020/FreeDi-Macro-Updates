@@ -1,0 +1,14 @@
+[gcode_macro GO_TO_POOP_SHOOT]
+description: Move toolhead to poop shoot
+gcode:
+    HOME_IF_NEEDED
+
+    G90
+    {% if printer.gcode_move.position.y > 300 %}
+      G1 Y300 F9000
+    {% endif %}
+
+    G1 X95 Y312 F12000
+    G1 Y316 F600
+    G1 Y320 F9000
+    G1 Y324 F600

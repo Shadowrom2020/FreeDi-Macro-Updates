@@ -1,0 +1,19 @@
+[gcode_macro CTC_STATUS]
+gcode:
+    {% set ctc = printer["gcode_macro CHAMBER_TEMP_CONTROLLER"] %}
+    {% set chamber = printer["heater_generic chamber"].temperature|float %}
+    {% set target  = printer["heater_generic chamber"].target|float %}
+    {% set fan     = printer["fan_generic filterfan"].speed|float %}
+
+    # Build a safe, literal message with no Jinja inside the string
+    {% set msg = 
+        "CTC STATUS | " ~
+        "State=" ~ ctc.state|string ~
+        " | Chamber=" ~ ("%.1f"|format(chamber)) ~ "C" ~
+        " | Target=" ~ ("%.1f"|format(target)) ~ "C" ~
+        " | BaseFan=" ~ ("%.0f"|format(ctc.base_fan_speed * 100)) ~ "%" ~
+        " | BoostFan=" ~ ("%.0f"|format(ctc.boost_fan_speed * 100)) ~ "%" ~
+        " | CurrentFan=" ~ ("%.0f"|format(fan * 100)) ~ "%"
+    %}
+
+    M118 {msg}

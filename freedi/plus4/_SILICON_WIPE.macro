@@ -1,0 +1,39 @@
+[gcode_macro _SILICON_WIPE]
+description: Wipe on the silicon pad with custom min and max coordinates and margin
+gcode:
+    G90
+    {% if (printer.gcode_move.position.y) > 300 %}
+      G1 Y300 F600      
+    {% endif %}
+
+    G1 X95 F12000
+    G1 Y314 F9000
+    G1 Y324 F600
+
+    ; Wipe movements in X direction
+    G1 X58 F12000
+    G1 X78 F12000
+    G1 Y324
+    G1 X58 F12000
+    G1 X78 F12000
+    G1 Y323.5
+    G1 X58 F12000
+    G1 X78 F12000
+    G1 Y323
+    G1 X58 F12000
+    G1 X78 F12000
+    G1 Y322.5
+    G1 X58 F12000
+    G1 X78 F12000
+    G1 Y322
+    G1 X58 F12000
+    G1 X75 F12000
+    G1 Y321.5
+
+    ; Wipe movements in circles
+    G2 I0.8 J0.8 F600
+    G2 I0.8 J0.8 F600
+    G2 I0.8 J0.8 F600
+
+    G1 Y324 F600
+    G1 X95 F12000

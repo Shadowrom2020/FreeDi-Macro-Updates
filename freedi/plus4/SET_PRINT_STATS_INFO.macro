@@ -1,0 +1,8 @@
+[gcode_macro SET_PRINT_STATS_INFO]
+rename_existing: BASE_SET_PRINT_STATS_INFO_BASE
+gcode:
+    # To prevent the chamber heater to blow hot air directly onto the left side of the print bed 
+    {% if (printer.toolhead.position.z) > 260 %}
+        M141 S0
+    {% endif %}
+    BASE_SET_PRINT_STATS_INFO_BASE {rawparams}

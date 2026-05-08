@@ -1,0 +1,21 @@
+[gcode_macro LEAVE_POOP_SHOOT]
+description: Primes the nozzle with fresh filament before load/unload/print start
+gcode:
+    HOME_IF_NEEDED
+
+    {% if printer.gcode_move.position.y > 323 %}
+      G1 X95 F1200
+      G1 Y300 F1200
+    {% else %}
+        {% if printer.gcode_move.position.y < 318  %}
+            G1 X95 Y300 F1200
+        {% else %}
+            {% if (printer.gcode_move.position.x < 83 or printer.gcode_move.position.x > 106 or 
+                    (printer.gcode_move.position.x >= 93 and printer.gcode_move.position.x <= 97)) %}
+                G1 Y300 F1200
+                G1 X95    
+            {% else %}
+               M118 Warning: Nozzle in dangerous position!        
+            {% endif %}
+        {% endif %}
+    {% endif %}

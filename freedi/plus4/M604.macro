@@ -1,0 +1,16 @@
+[gcode_macro M604]
+description: Load filament with priming nozzle
+gcode:
+    {% set hotend_target_temp = params.S|default(250)|int %}
+    {% set accel = printer.toolhead.max_accel|int %}
+    
+    M104 S{hotend_target_temp}
+
+    HOME_IF_NEEDED
+    M204 S10000
+    PRIME_NOZZLE hotend_target_temp={hotend_target_temp}
+
+    M106 S0
+    M400
+    M204 S{accel}
+    M118 Load finished
