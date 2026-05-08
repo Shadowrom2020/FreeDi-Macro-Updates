@@ -1,0 +1,63 @@
+[gcode_macro INPUT_SHAPING_CALIBRATE]
+description: "Perform Input Shaping calibration and save the results to printer.cfg"
+gcode:
+    {% set mid_x = printer.toolhead.axis_maximum.x / 2 %}
+    {% set mid_y = printer.toolhead.axis_maximum.y / 2 %}
+    HOME_IF_NEEDED
+    G90
+    G0 X{mid_x} Y{mid_y} F6000
+    SHAPER_CALIBRATE                                                                                            ; Step 1: Perform the Input Shaping calibration
+    G4 P5000                                                                                                    ; Step 2: Pause to allow the calibration to complete
+    SAVE_CONFIG                                                                                                 ; Step 3: Save the configuration to printer.cfg
+    RESTART                                                                                                     ; Step 4: Restart the firmware to apply the new settings
+
+#####################################################################
+# Advanced CHAMBER_TEMP_CONTROLLER
+#####################################################################
+
+#==============================================================
+# CHAMBER TEMPERATURE CONTROLLER (CTC)        4/16/2026
+# Developed and tested on QIDI Xmax-3 running FreeDI Firmware.
+#
+# Features:
+#     Mitigates chamber temperature by boosting the filter fan when
+#     the chamber temperature limits are exceeded. CTC runs silent  
+#     in the background, checking every 30 seconds. Mode messages
+#     are logged to the console during a temperature excursion.  
+# 
+#     Fan speed adjustments are honored throughout the process.
+#     After an excursion, the fan is returned the latest speed setting.  
+#
+#     As application chamber target temp the nears* chamber max, severe threshold shrinks    
+#     to allow running at the desired temperatures up to chamber max without
+#     being spammed with log messages, or fan speed overridden. 
+#     *Near is within severe_buffer + warning_buffer of chamber_max, or 8C.
+#     
+#     WARNING is disabled when Chamber target temperatue is set to zero.
+#
+#     CTC is set to run while in the printing or pause klipper state.
+#      
+# Excursions:      
+#      SEVERE:
+#         Excursion when (Chamber ˚C > severe_threshold ).  
+#         Where severe_threshold is: chamber_max ˚C - severe_buffer ˚C . 
+#         Chamber Fan is forced to 100%.
+#         The severe_buffer is currnetly set to 5C.
+#      WARNING:
+#         Excursion when (Chamber˚C >  warning_threshold). 
+#         Where warning_threshhold  is: target ˚C + warning_buffer ˚C . 
+#         Chamber Fan is increased proportionally. (+20% per °C above threshold)
+#         The warning_buffer is current set to 3C.
+#      NORMAL:  
+#         Signals end of Warning or Severe excursion.
+#         Chamber fan returns to last speed setting.
+#
+# Explaination:
+#      CTC function will start with Klipper starting. 
+#        Idles(no CTC checking) unless in "printing" or "paused" status.
+#        Can be made operational in "standby", add "standby" to list in ..._LOOP macro. 
+#      Config settings that code expects:     May need adjusting.
+#        Chamber fan:    [fan_generic filterfan]    speed, off_below
+#        Chamber heater: [heater_generic chamber]   temperature,  target,  max_temp 
+#        M118 output requires [respond] enabled
+#-----------------------------------------------------

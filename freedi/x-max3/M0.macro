@@ -1,0 +1,6 @@
+[gcode_macro M0]
+gcode:
+    PAUSE
+
+
+# Pause SD print

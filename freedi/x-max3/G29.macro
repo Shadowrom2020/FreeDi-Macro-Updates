@@ -1,0 +1,18 @@
+[gcode_macro G29]
+gcode:
+    {% set use_static_mesh = printer["gcode_macro PRINT_START"].static_mesh_on_next_g29 %}
+    SET_GCODE_VARIABLE MACRO=PRINT_START VARIABLE=static_mesh_on_next_g29 VALUE=False
+    {% if use_static_mesh %}
+        {% if "STATIC_MESH" in printer.bed_mesh.profiles %}                                                        ; Check if the spicific STATIC_MESH exists
+            M118 G29: Loading 'STATIC_MESH'.
+            BED_MESH_PROFILE LOAD=STATIC_MESH                                                                      ; Use the STATIC_MESH
+        {% else %}                                                                                                 ; Fallback to KAMP if STATIC_MESH not found
+            M118 G29: ERROR 'STATIC_MESH' not found! Using KAMP fallback.
+            BED_MESH_CALIBRATE PROFILE=adaptive ADAPTIVE=1 ADAPTIVE_MARGIN=5                                       ; Perform adaptive meshing
+        {% endif %}
+    {% else %}
+        BED_MESH_CALIBRATE PROFILE=adaptive ADAPTIVE=1 ADAPTIVE_MARGIN=5                                           ; Perform adaptive meshing
+    {% endif %}
+
+
+# Babystep

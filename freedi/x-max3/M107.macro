@@ -1,0 +1,10 @@
+[gcode_macro M107]
+rename_existing: M107.1
+gcode:  
+    M106.1 S0
+
+
+########################################
+# Temperature Macros
+########################################
+# Wait for Hotend Temperature

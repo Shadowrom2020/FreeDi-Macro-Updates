@@ -1,0 +1,9 @@
+[gcode_macro LEVEL_BED]
+description: "Measure bed and calculate screw adjustments for manual bed leveling"
+gcode:
+    G28                                                                                                         ; Home all
+    SCREWS_TILT_CALCULATE                                                                                       ; Perform measurements and output screw adjustments
+
+
+# Probe Calibration
+# For more information, see https://www.klipper3d.org/Probe_Calibrate.html

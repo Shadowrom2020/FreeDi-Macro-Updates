@@ -1,0 +1,224 @@
+{
+  "manifest_version": "1",
+  "vendor": "freedi",
+  "model": "x-max3",
+  "updated": "2026-05-08T10:26:55.806850Z",
+  "macros": [
+    {
+      "macro_name": "BED_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/BED_PID_TUNE.macro"
+    },
+    {
+      "macro_name": "BEEP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/BEEP.macro"
+    },
+    {
+      "macro_name": "CALIBRATE_Z_OFFSET",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/CALIBRATE_Z_OFFSET.macro"
+    },
+    {
+      "macro_name": "CANCEL_PRINT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/CANCEL_PRINT.macro"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER.macro"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER_LOOP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER_LOOP.macro"
+    },
+    {
+      "macro_name": "CTC_STATUS",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/CTC_STATUS.macro"
+    },
+    {
+      "macro_name": "G29",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/G29.macro"
+    },
+    {
+      "macro_name": "INPUT_SHAPING_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/INPUT_SHAPING_CALIBRATE.macro"
+    },
+    {
+      "macro_name": "LEVEL_BED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/LEVEL_BED.macro"
+    },
+    {
+      "macro_name": "LOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/LOAD_FILAMENT.macro"
+    },
+    {
+      "macro_name": "M106",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M106.macro"
+    },
+    {
+      "macro_name": "M107",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M107.macro"
+    },
+    {
+      "macro_name": "M109",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M109.macro"
+    },
+    {
+      "macro_name": "M141",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M141.macro"
+    },
+    {
+      "macro_name": "M191",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M191.macro"
+    },
+    {
+      "macro_name": "M204",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M204.macro"
+    },
+    {
+      "macro_name": "M290",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M290.macro"
+    },
+    {
+      "macro_name": "M303",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M303.macro"
+    },
+    {
+      "macro_name": "M8029",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M8029.macro"
+    },
+    {
+      "macro_name": "M900",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M900.macro"
+    },
+    {
+      "macro_name": "NEXT_PRINT_STATIC_MESH",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/NEXT_PRINT_STATIC_MESH.macro"
+    },
+    {
+      "macro_name": "NOZZLE_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/NOZZLE_PID_TUNE.macro"
+    },
+    {
+      "macro_name": "PAUSE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/PAUSE.macro"
+    },
+    {
+      "macro_name": "PRINT_END",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/PRINT_END.macro"
+    },
+    {
+      "macro_name": "PRINT_START",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/PRINT_START.macro"
+    },
+    {
+      "macro_name": "RESUME",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/RESUME.macro"
+    },
+    {
+      "macro_name": "SHAPER_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/SHAPER_CALIBRATE.macro"
+    },
+    {
+      "macro_name": "UNLOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/UNLOAD_FILAMENT.macro"
+    },
+    {
+      "macro_name": "_Z_CLEARANCE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/_Z_CLEARANCE.macro"
+    },
+    {
+      "macro_name": "beep_off",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/beep_off.macro"
+    },
+    {
+      "macro_name": "beep_on",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/beep_on.macro"
+    },
+    {
+      "macro_name": "G28",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/G28.macro"
+    },
+    {
+      "macro_name": "HOME_IF_NEEDED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/HOME_IF_NEEDED.macro"
+    },
+    {
+      "macro_name": "M0",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M0.macro"
+    },
+    {
+      "macro_name": "M25",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/x-max3/M25.macro"
+    }
+  ]
+}

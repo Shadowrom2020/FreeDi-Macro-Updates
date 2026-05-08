@@ -1,0 +1,10 @@
+[gcode_macro M25]
+rename_existing: M9925
+gcode:
+    PAUSE
+
+
+########################################
+# Basic Macros
+########################################
+# Flag macro to use STATIC_MESH usage instead of KAMP (needed make this function work from printjob selection on the LCD)

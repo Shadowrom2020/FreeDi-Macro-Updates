@@ -1,0 +1,7 @@
+[gcode_macro SHAPER_CALIBRATE]
+rename_existing: RESHAPER_CALIBRATE
+gcode:
+    RESHAPER_CALIBRATE FREQ_START=30 FREQ_END=130
+
+
+# Linear Advance Factor
