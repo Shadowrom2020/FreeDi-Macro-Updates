@@ -1,0 +1,20 @@
+[gcode_macro CANCEL_PRINT]
+rename_existing: BASE_CANCEL_PRINT
+gcode:
+
+    {% set max_z = printer.configfile.config["stepper_z"]["position_max"]|float %}
+    {% if (printer.toolhead.position.z + 12) < max_z %}
+        {% set z_hop = 2  %}
+    {% else %}
+        {% set z_hop = 0 %}
+    {% endif %}
+
+    G91                                                                                                            ; Relative positioning
+    G1 Z{z_hop} F600                                                                                               ; Do a tiny z-hop
+    G90                                                                                                            ; Absolute positioning
+
+    G1 X{printer.toolhead.axis_maximum.x/2} Y{printer.toolhead.axis_maximum.y-40} F12000
+    CLEAR_PAUSE
+
+    PRINT_END
+    BASE_CANCEL_PRINT

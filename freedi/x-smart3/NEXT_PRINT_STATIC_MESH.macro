@@ -1,0 +1,11 @@
+[gcode_macro NEXT_PRINT_STATIC_MESH]
+description: Forces the NEXT print to use 'STATIC_MESH' instead of KAMP.
+gcode:
+    {% if "STATIC_MESH" in printer.bed_mesh.profiles %}
+        SET_GCODE_VARIABLE MACRO=PRINT_START VARIABLE=force_static_mesh VALUE=True
+        {action_respond_info("The NEXT print will use 'STATIC_MESH'.")}
+        M118 The NEXT print will use the STATIC_MESH.
+    {% else %}
+        {action_respond_info("WARNING: No mesh named 'STATIC_MESH' found. Please save one first (BED_MESH_PROFILE SAVE=STATIC_MESH).")}
+        M118 WARNING: No mesh named STATIC_MESH found. Please save one first (BED_MESH_PROFILE SAVE=STATIC_MESH).
+    {% endif %}

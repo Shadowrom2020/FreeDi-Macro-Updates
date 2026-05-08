@@ -1,0 +1,83 @@
+[gcode_macro G28]
+rename_existing: G28.1
+gcode:
+    {% set reduced_current_x = 0.6 %}
+    {% set reduced_current_y = 0.6 %}
+    {% set home_all = ('X' in rawparams.upper() and 'Y' in rawparams.upper() and 'Z' in rawparams.upper()) or 
+                      ('X' not in rawparams.upper() and 'Y' not in rawparams.upper() and 'Z' not in rawparams.upper()) %}
+    {% set home_current_x = printer.configfile.settings['tmc2209 stepper_x'].run_current * reduced_current_x %}
+    {% set home_current_y = printer.configfile.settings['tmc2209 stepper_y'].run_current * reduced_current_y %}
+
+    {% set init_XY_move = 30 %}
+    #{% set y_init_move = 5 %}
+    {% set z_clearance = 2 %}
+
+    {% set home_all_final_position_x = printer.toolhead.axis_maximum.x / 2 %}
+    {% set home_all_final_position_y = printer.toolhead.axis_maximum.y - 40 %}
+    {% set home_all_final_position_z = 10 %}
+
+    # If homing should at least move X or Y axis
+    {% if home_all or 'X' in rawparams.upper() or 'Y' in rawparams.upper() %}     
+        # Check if Z is homed
+        {% if 'z' in printer.toolhead.homed_axes %}
+            {% set Z_axis_was_homed = true %}                                                                       ; Set Z_axis_was_homed to true if Z is already homed
+            G91                                                                                                     ; Use relative positioning
+            G1 Z2 F600                                                                                              ; Move bed down
+            G90                                                                                                     ; Use absolute positioning
+        {% else %}
+            {% set Z_axis_was_homed = false %}                                                                      ; Set Z_axis_was_homed to false if Z is not homed
+            FORCE_MOVE STEPPER=stepper_z DISTANCE={z_clearance} VELOCITY=10                                         ; Move bed down
+        {% endif %}
+    {% endif %}
+
+    {% if home_all or 'X' in rawparams.upper() or 'Y' in rawparams.upper() %} 
+        G91                                                                                                         ; Use relative positioning
+        FORCE_MOVE STEPPER=stepper_x DISTANCE={init_XY_move} VELOCITY=40                                            ; Move X a little before homing
+        SET_KINEMATIC_POSITION X={printer.toolhead.position.x + (init_XY_move/2)}                                   ; Compensate the FORCE_MOVE position 
+        SET_KINEMATIC_POSITION Y={printer.toolhead.position.y + (init_XY_move/2)}                                   ; Compensate the FORCE_MOVE position 
+        G90                                                                                                         ; Use absolute positioning
+    {% endif %}
+
+    # Home Y
+    {% if home_all or 'Y' in rawparams.upper() %}
+        SET_TMC_CURRENT STEPPER=stepper_x CURRENT={home_current_y}                                                  ; Lower motor current
+        SET_TMC_CURRENT STEPPER=stepper_y CURRENT={home_current_y}                                                  ; Lower motor current
+        G28.1 Y                                                                                                     ; Home Y
+        SET_TMC_CURRENT STEPPER=stepper_x CURRENT={printer.configfile.settings['tmc2209 stepper_x'].run_current}    ; Set motor current to the previous value
+        SET_TMC_CURRENT STEPPER=stepper_y CURRENT={printer.configfile.settings['tmc2209 stepper_y'].run_current}    ; Set motor current to the previous value
+        G1 Y10 F1200                                                                                                ; Move Y-axis slightly
+    {% endif %}
+    
+    # Home X
+    {% if home_all or 'X' in rawparams.upper() %}        
+        SET_TMC_CURRENT STEPPER=stepper_x CURRENT={home_current_x}                                                  ; Lower motor current
+        SET_TMC_CURRENT STEPPER=stepper_y CURRENT={home_current_x}                                                  ; Lower motor current
+        G28.1 X                                                                                                     ; Home X
+        SET_TMC_CURRENT STEPPER=stepper_x CURRENT={printer.configfile.settings['tmc2209 stepper_x'].run_current}    ; Set motor current to the previous value
+        SET_TMC_CURRENT STEPPER=stepper_y CURRENT={printer.configfile.settings['tmc2209 stepper_y'].run_current}    ; Set motor current to the previous value
+        G1 X10 F1200                                                                                                ; Move X-axis slightly
+    {% endif %}
+
+    # Raise the bed again if only X or only Y axes were homed
+    {% if not (home_all or 'Z' in rawparams.upper()) %}
+        {% if Z_axis_was_homed %}
+            G91                                                                                                     ; Use relative positioning
+            G1 Z-2 F600                                                                                             ; Raise the bed back again
+            G90                                                                                                     ; Use absolute positioning
+        {% else %}
+            FORCE_MOVE STEPPER=stepper_z DISTANCE=-{z_clearance} VELOCITY=10                                        ; Raise the bed back again
+        {% endif %}
+    {% endif %}
+
+    # Home Z
+    {% if home_all or 'Z' in rawparams.upper() %}
+        G28.1 Z                                                                                                     ; Home Z
+        G90                                                                                                         ; Set absolute positioning
+        G1 Z{home_all_final_position_z}                                                                             ; Move bed down   
+    {% endif %}
+
+    # Move to the final position if all axes were homed
+    {% if home_all %}
+        G90                                                                                                         ; Set absolute positioning
+        G1 X{home_all_final_position_x} Y{home_all_final_position_y} Z{home_all_final_position_z} F7800             ; Move to the rear center
+    {% endif %}
