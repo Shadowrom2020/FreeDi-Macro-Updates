@@ -1,0 +1,5 @@
+[gcode_macro SET_PRINT_STATS_INFO]
+rename_existing: BASE_SET_PRINT_STATS_INFO_BASE
+gcode:
+    #TIMELAPSE_TAKE_FRAME
+    BASE_SET_PRINT_STATS_INFO_BASE {rawparams}
