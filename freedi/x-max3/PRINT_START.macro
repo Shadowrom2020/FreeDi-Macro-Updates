@@ -1,0 +1,61 @@
+[gcode_macro PRINT_START]
+# Use PRINT_START for the slicer starting script
+description: Start printing
+variable_force_static_mesh: False                                                                                   ; Set to True to force a static mesh instead of KAMP
+# flag to enable static mesh feature
+# this implementation makes it usable in "legacy mode" (standard slicer start gcode) AND "advanced mode" (user uses recommended slicer start gcode)
+variable_static_mesh_on_next_g29: False                                                                             
+gcode:
+    # Set variables given by different slicer presets
+    {% if params.BED %}
+        {% set bed_target_temp = params.BED|default(0)|int %}   
+    {% else %}
+        {% set bed_target_temp = params.BED_TEMP|default(0)|int %}
+    {% endif %}
+
+    {% if params.HOTEND %}
+        {% set hotend_target_temp = params.HOTEND|default(0)|int %}
+    {% else %}
+        {% set hotend_target_temp = params.EXTRUDER_TEMP|default(0)|int %}
+    {% endif %}
+
+    {% set chamber_target_temp = params.CHAMBER|default(0)|int %}
+
+    {% set in_advanced_mode = (bed_target_temp > 0) or (hotend_target_temp > 0) or (chamber_target_temp > 0) %}
+
+    CLEAR_PAUSE                                                                                                     ; Clear existing pause states
+    BED_MESH_CLEAR                                                                                                  ; Clear previous adaptive mesh
+    SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN=Mainboard_fan TARGET=1                                               ; Decrease the mainboard target temp to fully turn the fan on
+
+    {% set KAMP_deactivated = printer["gcode_macro PRINT_START"].force_static_mesh %}                               ; Check if KAMP is deactivated for this print
+    SET_GCODE_VARIABLE MACRO=PRINT_START VARIABLE=force_static_mesh VALUE=False                                     ; Auto-reset the variable immediately for the next print after this one 
+    SET_GCODE_VARIABLE MACRO=PRINT_START VARIABLE=static_mesh_on_next_g29 VALUE={KAMP_deactivated}                  ; Set the static mesh variable for legacy mode and avoid double meshing 
+
+    {% if in_advanced_mode %}
+        {% set bed_center_x = printer.configfile.config["stepper_x"]["position_max"]|float / 2 %}
+        {% set bed_center_y = printer.configfile.config["stepper_y"]["position_max"]|float / 2 %}
+        {% set start_position_x = printer.toolhead.axis_maximum.x / 2 %}
+        {% set start_position_y = printer.toolhead.axis_maximum.y - 40 %}
+        {% set start_position_z = 10 %}
+
+        M140 S{bed_target_temp}                                                                                      ; Set bed temperature
+        M141 S{chamber_target_temp}                                                                                  ; Set chamber temperature
+        G28                                                                                                          ; Home all axes
+
+        {% if chamber_target_temp > 0 %}                                                                             ; Accelerate chamber heating by using the bed as additional heater    
+            G0 X{bed_center_x} Y{bed_center_y} Z3 F780                                                               ; Move print bed to perfect postion to help chamber heating
+            M106 P2 S185                                                                                             ; Turn sidefan on to use bed heat and mix air
+            M106 P0 S128                                                                                             ; Turn part cooling fan on to help air mixing
+            TEMPERATURE_WAIT SENSOR="heater_generic chamber" MINIMUM={chamber_target_temp - 5}                       ; Wait for chamber to heat up
+            M106 P2 S0                                                                                               ; Turn off sidefan
+            M106 P0 S0                                                                                               ; Turn off part cooling fan                                                                      
+        {% endif %}
+
+        M191 S{chamber_target_temp}                                                                                  ; Set and wait for chamber temperature
+        M190 S{bed_target_temp}                                                                                      ; Set and wait for bed temperature  
+        G90                                                                                                          ; Set absolute positioning
+        G1 X{start_position_x} Y{start_position_y} Z{start_position_z} F7800                                         ; Move to start position
+        G28 Z                                                                                                        ; Home Z again for to compensate bed expansion
+        G29                                                                                                          ; Mesh (KAMP or STATIC_MESH depending on flag)
+        M109 S{hotend_target_temp}                                                                                   ; Set and wait for hotend temperature 
+    {% endif %}

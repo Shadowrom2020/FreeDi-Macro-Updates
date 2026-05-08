@@ -1,0 +1,4 @@
+[gcode_macro BED_PID_TUNE]
+description: "Perform PID tuning for the bed heater"
+gcode:
+    PID_CALIBRATE HEATER=heater_bed TARGET=80  ; PID tune the bed
