@@ -1,0 +1,6 @@
+[gcode_macro M141]
+gcode:
+    {% if printer["heater_generic chamber"] is defined %}
+        {% set chamber_target_temp = params.S|float %}
+        SET_HEATER_TEMPERATURE HEATER=chamber TARGET={([chamber_target_temp, 65]|min)}
+    {% endif %}

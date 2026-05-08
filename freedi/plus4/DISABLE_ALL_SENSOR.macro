@@ -1,0 +1,4 @@
+[gcode_macro DISABLE_ALL_SENSOR]
+gcode:
+    SET_FILAMENT_SENSOR SENSOR=filament_tangle_sensor ENABLE=0
+    DISABLE_FILAMENT_WIDTH_SENSOR

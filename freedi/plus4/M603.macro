@@ -1,0 +1,16 @@
+[gcode_macro M603]
+description: Unload filament with cutting filament
+gcode:
+    {% set hotend_target_temp = params.S|default(220)|int %}
+    {% set accel = printer.toolhead.max_accel|int %}
+    
+	M104 S{hotend_target_temp}
+    
+    HOME_IF_NEEDED
+    M204 S10000
+    CUT_FILAMENT
+    
+    M106 S0
+    M400
+    M204 S{accel}
+    M118 Unload finished

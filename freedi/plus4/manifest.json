@@ -1,0 +1,354 @@
+{
+  "manifest_version": "1",
+  "vendor": "freedi",
+  "model": "plus4",
+  "updated": "2026-05-08T18:12:30.950972Z",
+  "macros": [
+    {
+      "macro_name": "AUTO_LEVEL_BED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/AUTO_LEVEL_BED.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "BED_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/BED_PID_TUNE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "BEEP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/BEEP.macro",
+      "category": "Sound Macros"
+    },
+    {
+      "macro_name": "CALIBRATE_Z_OFFSET",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CALIBRATE_Z_OFFSET.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "CANCEL_PRINT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CANCEL_PRINT.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CHAMBER_TEMP_CONTROLLER.macro",
+      "category": "Advanced CHAMBER_TEMP_CONTROLLER"
+    },
+    {
+      "macro_name": "CHAMBER_TEMP_CONTROLLER_LOOP",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CHAMBER_TEMP_CONTROLLER_LOOP.macro",
+      "category": "Advanced CHAMBER_TEMP_CONTROLLER"
+    },
+    {
+      "macro_name": "CTC_STATUS",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CTC_STATUS.macro",
+      "category": "Utility Macros"
+    },
+    {
+      "macro_name": "CUT_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/CUT_FILAMENT.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "DISABLE_ALL_SENSOR",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/DISABLE_ALL_SENSOR.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "ENABLE_ALL_SENSOR",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/ENABLE_ALL_SENSOR.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "G28",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/G28.macro",
+      "category": "Homing"
+    },
+    {
+      "macro_name": "G29",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/G29.macro",
+      "category": "Z-height Macros"
+    },
+    {
+      "macro_name": "GO_TO_POOP_SHOOT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/GO_TO_POOP_SHOOT.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "HOME_IF_NEEDED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/HOME_IF_NEEDED.macro",
+      "category": "Homing"
+    },
+    {
+      "macro_name": "INPUT_SHAPING_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/INPUT_SHAPING_CALIBRATE.macro",
+      "category": "Macros for display functionallity"
+    },
+    {
+      "macro_name": "LEAVE_POOP_SHOOT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/LEAVE_POOP_SHOOT.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "LEVEL_BED",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/LEVEL_BED.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "LOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/LOAD_FILAMENT.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "M0",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M0.macro",
+      "category": "Basic Macros",
+      "description": "Unconditional stop"
+    },
+    {
+      "macro_name": "M106",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M106.macro",
+      "category": "Fan Macros"
+    },
+    {
+      "macro_name": "M107",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M107.macro",
+      "category": "Fan Macros"
+    },
+    {
+      "macro_name": "M109",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M109.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M141",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M141.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M191",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M191.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M204",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M204.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "M25",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M25.macro",
+      "category": "Basic Macros",
+      "description": "Pause SD print"
+    },
+    {
+      "macro_name": "M290",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M290.macro",
+      "category": "Z-height Macros"
+    },
+    {
+      "macro_name": "M303",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M303.macro",
+      "category": "Temperature Macros"
+    },
+    {
+      "macro_name": "M603",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M603.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "M604",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M604.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "M8029",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M8029.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "M900",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/M900.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "NEXT_PRINT_STATIC_MESH",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/NEXT_PRINT_STATIC_MESH.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "NOZZLE_PID_TUNE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/NOZZLE_PID_TUNE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "PAUSE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/PAUSE.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "PRIME_NOZZLE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/PRIME_NOZZLE.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "PRINT_END",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/PRINT_END.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "PRINT_START",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/PRINT_START.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "RESUME",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/RESUME.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "SCREWS_TILT_CALCULATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/SCREWS_TILT_CALCULATE.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "SET_PRINT_STATS_INFO",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/SET_PRINT_STATS_INFO.macro",
+      "category": "Plus4 Macros",
+      "description": "Danger Zone Y 318 -323"
+    },
+    {
+      "macro_name": "SHAPER_CALIBRATE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/SHAPER_CALIBRATE.macro",
+      "category": "Tuning Macros"
+    },
+    {
+      "macro_name": "UNLOAD_FILAMENT",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/UNLOAD_FILAMENT.macro",
+      "category": "Filament Macros"
+    },
+    {
+      "macro_name": "_PEI_WIPE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/_PEI_WIPE.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "_SILICON_WIPE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/_SILICON_WIPE.macro",
+      "category": "Plus4 Macros"
+    },
+    {
+      "macro_name": "_Z_CLEARANCE",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/_Z_CLEARANCE.macro",
+      "category": "Basic Macros"
+    },
+    {
+      "macro_name": "beep_off",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/beep_off.macro",
+      "category": "Sound Macros"
+    },
+    {
+      "macro_name": "beep_on",
+      "version": "2026-05-08",
+      "source_file": "macros.cfg",
+      "file": "freedi/plus4/beep_on.macro",
+      "category": "Sound Macros"
+    }
+  ]
+}

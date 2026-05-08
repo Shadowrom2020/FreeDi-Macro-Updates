@@ -1,0 +1,74 @@
+[gcode_macro _PEI_WIPE]
+description: Wipe on the PEI pad
+gcode:
+    # Input values for the minimum and maximum coordinates of the pad
+    {% set pad_min_coordinate_x = 111 %}
+    {% set pad_max_coordinate_x = 136 %}
+    {% set pad_min_coordinate_y = 317 %}
+    {% set pad_max_coordinate_y = 325 %}
+    {% set margin = 1.0 %} # margin from the edge of the pad
+    {% set repetitions = 3 %}
+
+    # Arc parameters and radius to keep full arc inside limits
+    {% set arc_i = 0.5 %}
+    {% set arc_j = 0.5 %}
+    {% set arc_r = ((arc_i|float)**2 + (arc_j|float)**2) ** 0.5 %}
+
+    G90 # absolute positioning
+    {% if (printer.gcode_move.position.y) < 300 %}
+      G1 Y300 F9000
+    {% endif %}
+
+    G1 X108 F9000
+
+    # Compute safe max/min positions (account for margin and arc radius)
+    {% set X_max_position = pad_max_coordinate_x - margin - arc_r %}
+    {% set Y_max_position = pad_max_coordinate_y - margin - arc_r %}
+    {% set X_min_position = pad_min_coordinate_x + margin + arc_r %}
+    {% set Y_min_position = pad_min_coordinate_y + margin + arc_r %}
+
+    # Calculate random end positions within the defined safe boundaries (0.05 mm steps)
+    {% set random_x_steps = ((X_max_position - X_min_position) * 20) | int %}
+    {% if random_x_steps < 1 %}{% set random_x_steps = 1 %}{% endif %}
+    {% set random_x = (range(0, random_x_steps) | random) / 20.0 %}
+    {% set X_move_position = X_min_position + random_x %}
+
+    {% set random_y_steps = ((Y_max_position - Y_min_position) * 20) | int %}
+    {% if random_y_steps < 1 %}{% set random_y_steps = 1 %}{% endif %}
+    {% set random_y = (range(0, random_y_steps) | random) / 20.0 %}
+    {% set Y_move_position = Y_min_position + random_y %}
+
+    # Calculate a random starting Y position within the safe range (0.1 mm steps)
+    {% set random_start_y_steps = ((Y_max_position - Y_min_position) * 10) | int %}
+    {% if random_start_y_steps < 1 %}{% set random_start_y_steps = 1 %}{% endif %}
+    {% set random_start_y = (range(0, random_start_y_steps) | random) / 10.0 + Y_min_position %}
+
+    # Move the print head to the random starting Y position
+    G1 Y{random_start_y} F500
+
+    # Wiping movements in X direction
+    {% for move in range(repetitions|int) %}
+        G1 X{X_max_position} F400
+        G1 X{X_move_position} F400
+    {% endfor %}
+
+    # Wiping movements in Y direction
+    {% for move in range(repetitions|int) %}
+        G1 Y{Y_move_position} F400
+        G1 Y{Y_max_position} F400
+    {% endfor %}
+
+    G1 X{X_move_position} Y{Y_move_position} F300
+
+    # Circular wiping movements (kept inside safe area by arc radius)
+    {% for move in range(repetitions|int) %}
+        G2 I{arc_i} J{arc_j} F500
+    {% endfor %}
+
+    # Rectangular wiping movements
+    {% for move in range(repetitions|int) %}
+        G1 Y{Y_max_position} F400
+        G1 X{X_max_position} F400
+        G1 Y{Y_move_position} F400
+        G1 X{X_move_position} F400
+    {% endfor %}
