@@ -1,269 +1,269 @@
 {
-  "manifest_version": "1",
-  "vendor": "freedi",
-  "model": "x-max3",
-  "updated": "2026-05-08T18:12:30.951668Z",
-  "macros": [
-    {
-      "macro_name": "BED_PID_TUNE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/BED_PID_TUNE.macro",
-      "category": "Tuning Macros",
-      "description": "Bed PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings"
-    },
-    {
-      "macro_name": "BEEP",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/BEEP.macro",
-      "category": "Sound Macros"
-    },
-    {
-      "macro_name": "CALIBRATE_Z_OFFSET",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/CALIBRATE_Z_OFFSET.macro",
-      "category": "Tuning Macros",
-      "description": "Probe Calibration\nFor more information, see https://www.klipper3d.org/Probe_Calibrate.html"
-    },
-    {
-      "macro_name": "CANCEL_PRINT",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/CANCEL_PRINT.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "CHAMBER_TEMP_CONTROLLER",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER.macro",
-      "category": "Advanced CHAMBER_TEMP_CONTROLLER",
-      "description": "CHAMBER TEMPERATURE CONTROLLER (CTC)        4/16/2026\nDeveloped and tested on QIDI Xmax-3 running FreeDI Firmware.\n\nFeatures:\n    Mitigates chamber temperature by boosting the filter fan when\n    the chamber temperature limits are exceeded. CTC runs silent  \n    in the background, checking every 30 seconds. Mode messages\n    are logged to the console during a temperature excursion.  \n\n    Fan speed adjustments are honored throughout the process.\n    After an excursion, the fan is returned the latest speed setting.  \n\n    As application chamber target temp the nears* chamber max, severe threshold shrinks    \n    to allow running at the desired temperatures up to chamber max without\n    being spammed with log messages, or fan speed overridden. \n    *Near is within severe_buffer + warning_buffer of chamber_max, or 8C.\n\n    WARNING is disabled when Chamber target temperatue is set to zero.\n\n    CTC is set to run while in the printing or pause klipper state.\n      \nExcursions:      \n     SEVERE:\n        Excursion when (Chamber \u02daC > severe_threshold ).  \n        Where severe_threshold is: chamber_max \u02daC - severe_buffer \u02daC . \n        Chamber Fan is forced to 100%.\n        The severe_buffer is currnetly set to 5C.\n     WARNING:\n        Excursion when (Chamber\u02daC >  warning_threshold). \n        Where warning_threshhold  is: target \u02daC + warning_buffer \u02daC . \n        Chamber Fan is increased proportionally. (+20% per \u00b0C above threshold)\n        The warning_buffer is current set to 3C.\n     NORMAL:  \n        Signals end of Warning or Severe excursion.\n        Chamber fan returns to last speed setting.\n\nExplaination:\n        CTC function will start with Klipper starting. \n        Idles(no CTC checking) unless in \"printing\" or \"paused\" status.\n        Can be made operational in \"standby\", add \"standby\" to list in ..._LOOP macro. \n        Config settings that code expects:     May need adjusting.\n        Chamber fan:    [fan_generic filterfan]    speed, off_below\n        Chamber heater: [heater_generic chamber]   temperature,  target,  max_temp \n        M118 output requires [respond] enabled"
-    },
-    {
-      "macro_name": "CHAMBER_TEMP_CONTROLLER_LOOP",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER_LOOP.macro",
-      "category": "Advanced CHAMBER_TEMP_CONTROLLER"
-    },
-    {
-      "macro_name": "CTC_STATUS",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/CTC_STATUS.macro",
-      "category": "Utility Macros"
-    },
-    {
-      "macro_name": "G29",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/G29.macro",
-      "category": "Z-height Macros"
-    },
-    {
-      "macro_name": "INPUT_SHAPING_CALIBRATE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/INPUT_SHAPING_CALIBRATE.macro",
-      "category": "Macros for display functionallity"
-    },
-    {
-      "macro_name": "LEVEL_BED",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/LEVEL_BED.macro",
-      "category": "Tuning Macros",
-      "description": "Bed leveling\nFor more information, see https://www.klipper3d.org/Manual_Level.html#adjusting-bed-leveling-screws-using-the-bed-probe"
-    },
-    {
-      "macro_name": "LOAD_FILAMENT",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/LOAD_FILAMENT.macro",
-      "category": "Filament Macros"
-    },
-    {
-      "macro_name": "M106",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M106.macro",
-      "category": "Fan Macros"
-    },
-    {
-      "macro_name": "M107",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M107.macro",
-      "category": "Fan Macros"
-    },
-    {
-      "macro_name": "M109",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M109.macro",
-      "category": "Temperature Macros"
-    },
-    {
-      "macro_name": "M141",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M141.macro",
-      "category": "Temperature Macros"
-    },
-    {
-      "macro_name": "M191",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M191.macro",
-      "category": "Temperature Macros"
-    },
-    {
-      "macro_name": "M204",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M204.macro",
-      "category": "Tuning Macros"
-    },
-    {
-      "macro_name": "M290",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M290.macro",
-      "category": "Z-height Macros"
-    },
-    {
-      "macro_name": "M303",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M303.macro",
-      "category": "Temperature Macros"
-    },
-    {
-      "macro_name": "M8029",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M8029.macro",
-      "category": "Filament Macros"
-    },
-    {
-      "macro_name": "M900",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M900.macro",
-      "category": "Tuning Macros"
-    },
-    {
-      "macro_name": "NEXT_PRINT_STATIC_MESH",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/NEXT_PRINT_STATIC_MESH.macro",
-      "category": "Basic Macros",
-      "description": "Flag macro to use STATIC_MESH usage instead of KAMP (needed make this function work from printjob selection on the LCD)"
-    },
-    {
-      "macro_name": "NOZZLE_PID_TUNE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/NOZZLE_PID_TUNE.macro",
-      "category": "Tuning Macros",
-      "description": "Nozzle PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings"
-    },
-    {
-      "macro_name": "PAUSE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/PAUSE.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "PRINT_END",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/PRINT_END.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "PRINT_START",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/PRINT_START.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "RESUME",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/RESUME.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "SHAPER_CALIBRATE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/SHAPER_CALIBRATE.macro",
-      "category": "Tuning Macros"
-    },
-    {
-      "macro_name": "UNLOAD_FILAMENT",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/UNLOAD_FILAMENT.macro",
-      "category": "Filament Macros"
-    },
-    {
-      "macro_name": "_Z_CLEARANCE",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/_Z_CLEARANCE.macro",
-      "category": "Basic Macros"
-    },
-    {
-      "macro_name": "beep_off",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/beep_off.macro",
-      "category": "Sound Macros"
-    },
-    {
-      "macro_name": "beep_on",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/beep_on.macro",
-      "category": "Sound Macros"
-    },
-    {
-      "macro_name": "G28",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/G28.macro",
-      "category": "Homing",
-      "description": "Homing modification"
-    },
-    {
-      "macro_name": "HOME_IF_NEEDED",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/HOME_IF_NEEDED.macro",
-      "category": "Homing"
-    },
-    {
-      "macro_name": "M0",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M0.macro",
-      "category": "Basic Macros",
-      "description": "Unconditional stop"
-    },
-    {
-      "macro_name": "M25",
-      "version": "2026-05-08",
-      "source_file": "macros.cfg",
-      "file": "freedi/x-max3/M25.macro",
-      "category": "Basic Macros",
-      "description": "Pause SD print"
-    }
-  ]
+    "macros": [
+        {
+            "category": "Tuning Macros",
+            "description": "Bed PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings",
+            "file": "freedi/x-max3/BED_PID_TUNE.macro",
+            "macro_name": "BED_PID_TUNE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Sound Macros",
+            "file": "freedi/x-max3/BEEP.macro",
+            "macro_name": "BEEP",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "description": "Probe Calibration\nFor more information, see https://www.klipper3d.org/Probe_Calibrate.html",
+            "file": "freedi/x-max3/CALIBRATE_Z_OFFSET.macro",
+            "macro_name": "CALIBRATE_Z_OFFSET",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/CANCEL_PRINT.macro",
+            "macro_name": "CANCEL_PRINT",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Advanced CHAMBER_TEMP_CONTROLLER",
+            "description": "CHAMBER TEMPERATURE CONTROLLER (CTC)        4/16/2026\nDeveloped and tested on QIDI Xmax-3 running FreeDI Firmware.\n\nFeatures:\n    Mitigates chamber temperature by boosting the filter fan when\n    the chamber temperature limits are exceeded. CTC runs silent  \n    in the background, checking every 30 seconds. Mode messages\n    are logged to the console during a temperature excursion.  \n\n    Fan speed adjustments are honored throughout the process.\n    After an excursion, the fan is returned the latest speed setting.  \n\n    As application chamber target temp the nears* chamber max, severe threshold shrinks    \n    to allow running at the desired temperatures up to chamber max without\n    being spammed with log messages, or fan speed overridden. \n    *Near is within severe_buffer + warning_buffer of chamber_max, or 8C.\n\n    WARNING is disabled when Chamber target temperatue is set to zero.\n\n    CTC is set to run while in the printing or pause klipper state.\n      \nExcursions:      \n     SEVERE:\n        Excursion when (Chamber ˚C > severe_threshold ).  \n        Where severe_threshold is: chamber_max ˚C - severe_buffer ˚C . \n        Chamber Fan is forced to 100%.\n        The severe_buffer is currnetly set to 5C.\n     WARNING:\n        Excursion when (Chamber˚C >  warning_threshold). \n        Where warning_threshhold  is: target ˚C + warning_buffer ˚C . \n        Chamber Fan is increased proportionally. (+20% per °C above threshold)\n        The warning_buffer is current set to 3C.\n     NORMAL:  \n        Signals end of Warning or Severe excursion.\n        Chamber fan returns to last speed setting.\n\nExplaination:\n        CTC function will start with Klipper starting. \n        Idles(no CTC checking) unless in \"printing\" or \"paused\" status.\n        Can be made operational in \"standby\", add \"standby\" to list in ..._LOOP macro. \n        Config settings that code expects:     May need adjusting.\n        Chamber fan:    [fan_generic filterfan]    speed, off_below\n        Chamber heater: [heater_generic chamber]   temperature,  target,  max_temp \n        M118 output requires [respond] enabled",
+            "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER.macro",
+            "macro_name": "CHAMBER_TEMP_CONTROLLER",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Advanced CHAMBER_TEMP_CONTROLLER",
+            "file": "freedi/x-max3/CHAMBER_TEMP_CONTROLLER_LOOP.macro",
+            "macro_name": "CHAMBER_TEMP_CONTROLLER_LOOP",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Utility Macros",
+            "file": "freedi/x-max3/CTC_STATUS.macro",
+            "macro_name": "CTC_STATUS",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Z-height Macros",
+            "file": "freedi/x-max3/G29.macro",
+            "macro_name": "G29",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Macros for display functionallity",
+            "file": "freedi/x-max3/INPUT_SHAPING_CALIBRATE.macro",
+            "macro_name": "INPUT_SHAPING_CALIBRATE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "description": "Bed leveling\nFor more information, see https://www.klipper3d.org/Manual_Level.html#adjusting-bed-leveling-screws-using-the-bed-probe",
+            "file": "freedi/x-max3/LEVEL_BED.macro",
+            "macro_name": "LEVEL_BED",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Filament Macros",
+            "file": "freedi/x-max3/LOAD_FILAMENT.macro",
+            "macro_name": "LOAD_FILAMENT",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Fan Macros",
+            "file": "freedi/x-max3/M106.macro",
+            "macro_name": "M106",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Fan Macros",
+            "file": "freedi/x-max3/M107.macro",
+            "macro_name": "M107",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Temperature Macros",
+            "file": "freedi/x-max3/M109.macro",
+            "macro_name": "M109",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Temperature Macros",
+            "file": "freedi/x-max3/M141.macro",
+            "macro_name": "M141",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Temperature Macros",
+            "file": "freedi/x-max3/M191.macro",
+            "macro_name": "M191",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "file": "freedi/x-max3/M204.macro",
+            "macro_name": "M204",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Z-height Macros",
+            "file": "freedi/x-max3/M290.macro",
+            "macro_name": "M290",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Temperature Macros",
+            "file": "freedi/x-max3/M303.macro",
+            "macro_name": "M303",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Filament Macros",
+            "file": "freedi/x-max3/M8029.macro",
+            "macro_name": "M8029",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "file": "freedi/x-max3/M900.macro",
+            "macro_name": "M900",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "description": "Flag macro to use STATIC_MESH usage instead of KAMP (needed make this function work from printjob selection on the LCD)",
+            "file": "freedi/x-max3/NEXT_PRINT_STATIC_MESH.macro",
+            "macro_name": "NEXT_PRINT_STATIC_MESH",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "description": "Nozzle PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings",
+            "file": "freedi/x-max3/NOZZLE_PID_TUNE.macro",
+            "macro_name": "NOZZLE_PID_TUNE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/PAUSE.macro",
+            "macro_name": "PAUSE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/PRINT_END.macro",
+            "macro_name": "PRINT_END",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/PRINT_START.macro",
+            "macro_name": "PRINT_START",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/RESUME.macro",
+            "macro_name": "RESUME",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Tuning Macros",
+            "file": "freedi/x-max3/SHAPER_CALIBRATE.macro",
+            "macro_name": "SHAPER_CALIBRATE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Filament Macros",
+            "file": "freedi/x-max3/UNLOAD_FILAMENT.macro",
+            "macro_name": "UNLOAD_FILAMENT",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "file": "freedi/x-max3/_Z_CLEARANCE.macro",
+            "macro_name": "_Z_CLEARANCE",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Sound Macros",
+            "file": "freedi/x-max3/beep_off.macro",
+            "macro_name": "beep_off",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Sound Macros",
+            "file": "freedi/x-max3/beep_on.macro",
+            "macro_name": "beep_on",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Homing",
+            "description": "Homing modification",
+            "file": "freedi/x-max3/G28.macro",
+            "macro_name": "G28",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Homing",
+            "file": "freedi/x-max3/HOME_IF_NEEDED.macro",
+            "macro_name": "HOME_IF_NEEDED",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "description": "Unconditional stop",
+            "file": "freedi/x-max3/M0.macro",
+            "macro_name": "M0",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        },
+        {
+            "category": "Basic Macros",
+            "description": "Pause SD print",
+            "file": "freedi/x-max3/M25.macro",
+            "macro_name": "M25",
+            "source_file": "macros.cfg",
+            "version": "2026-05-08"
+        }
+    ],
+    "manifest_version": "1",
+    "model": "x-max3",
+    "updated": "2026-05-11T05:49:01.952Z",
+    "vendor": "freedi"
 }
