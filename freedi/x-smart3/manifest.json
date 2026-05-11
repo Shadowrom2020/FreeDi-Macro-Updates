@@ -2,14 +2,15 @@
   "manifest_version": "1",
   "vendor": "freedi",
   "model": "x-smart3",
-  "updated": "2026-05-08T19:15:59.993276Z",
+  "updated": "2026-05-11T05:58:26.886000Z",
   "macros": [
     {
       "macro_name": "BED_PID_TUNE",
       "version": "2026-05-08",
       "source_file": "macros.cfg",
       "file": "freedi/x-smart3/BED_PID_TUNE.macro",
-      "category": "Tuning Macros"
+      "category": "Tuning Macros",
+      "description": "Bed PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings"
     },
     {
       "macro_name": "BEEP",

@@ -13,8 +13,3 @@ gcode:
     SET_TMC_CURRENT STEPPER=stepper_z CURRENT={printer.configfile.settings['tmc2209 stepper_z'].run_current}
     SET_TMC_CURRENT STEPPER=stepper_z1 CURRENT={printer.configfile.settings['tmc2209 stepper_z1'].run_current}
     G28
-
-
-
-# Probe Calibration
-# For more information, see https://www.klipper3d.org/Probe_Calibrate.html

@@ -23,8 +23,3 @@ gcode:
 
     G90                                                                                                            ; Absolute positioning
     G1 Z{ [target_z_height, max_z_height]|min }
-
-
-########################################
-#  Filament Macros
-########################################

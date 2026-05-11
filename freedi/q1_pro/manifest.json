@@ -2,7 +2,7 @@
   "manifest_version": "1",
   "vendor": "freedi",
   "model": "q1_pro",
-  "updated": "2026-05-08T18:52:12.683584Z",
+  "updated": "2026-05-11T05:58:26.887000Z",
   "macros": [
     {
       "macro_name": "AUTO_LEVEL_BED",
@@ -16,7 +16,8 @@
       "version": "2026-05-08",
       "source_file": "macros.cfg",
       "file": "freedi/q1_pro/BED_PID_TUNE.macro",
-      "category": "Tuning Macros"
+      "category": "Tuning Macros",
+      "description": "Bed PID tuning\nFor more information, see https://www.klipper3d.org/Config_checks.html#calibrate-pid-settings"
     },
     {
       "macro_name": "BEEP",
